@@ -77,30 +77,27 @@ public class User {
     public void addUser() {
 
         try {
+            Date thisDate = new Date();
+            String userName;
+            String password;
 
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pomodorodb", "toriahem", "Gk6tnmcj!");
-
             Statement statement = connection.createStatement();
 
-            System.out.println("Wpisz nazwe uztykownika");
-            Scanner input = new Scanner(System.in);
-            String userName;
-            userName = input.nextLine();
+            userName = typeUserName();
 
-            System.out.println("Utworz haslo");
-            Scanner input2 = new Scanner(System.in);
-            String password = input2.nextLine();
-            Date thisDate = new Date();
-
-
-            if (doesntExist(userName)) {
+            if(doesntExist(userName)){
+                password = typePassword();
 
                 String uniqueID = UUID.randomUUID().toString();
-
                 statement.executeUpdate("INSERT INTO user " + "VALUES('" + uniqueID + "', '" + userName + "', '" + password + "', '" + thisDate + "')");
+
                 System.out.println("Utworzono nowego uzytkownika: " + userName);
 
-            } else System.out.println("Podana nazwa juz istnieje");
+            } else {
+                System.out.println("Podana nazwa juz istnieje");
+                addUser();
+            }
 
         } catch (
                 Exception e) {
