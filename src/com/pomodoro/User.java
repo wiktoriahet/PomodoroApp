@@ -34,7 +34,7 @@ public class User {
     }
 
     //drukuje wszystkich userów
-    public void printUsers() {
+    private static void printUsers() {
 
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pomodorodb", "toriahem", "Gk6tnmcj!");
@@ -66,14 +66,16 @@ public class User {
 
             Statement statement = connection.createStatement();
 
+            System.out.println("Wpisz nazwe uztykownika");
             Scanner input = new Scanner(System.in);
             String userName;
             userName = input.nextLine();
 
+            System.out.println("Utworz haslo");
             Scanner input2 = new Scanner(System.in);
-            String password;
-            password = input2.nextLine();
+            String password = createPassword();
             Date thisDate = new Date();
+
 
             if (doesntExist(userName)) {
 
@@ -99,8 +101,7 @@ public class User {
 
             System.out.println("Utworz haslo: ");
             Scanner input2 = new Scanner(System.in);
-            String password;
-            password = input2.nextLine();
+            String password = createPassword();
 
             Date thisDate = new Date();
 
@@ -118,7 +119,7 @@ public class User {
 
     //sprawdza czy user istnieje
 
-    public boolean doesntExist(String name) {
+    private static boolean doesntExist(String name) {
 
         try {
 
@@ -177,7 +178,7 @@ public class User {
     }
 
     //wypluwa id nadane w bazie danych
-    public String getID(String userName){
+    private static String getID(String userName){
 
 
         try {
@@ -200,7 +201,7 @@ public class User {
 
     //sprawdza poprawnosc hasla
 
-    public boolean isPasswordCorrect(String password, String name){
+    private static boolean isPasswordCorrect(String password, String name){
 
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pomodorodb", "toriahem", "Gk6tnmcj!");
@@ -220,6 +221,24 @@ public class User {
 
         return false;
 
+    }
+
+    public String createPassword(){
+        //bedziemy chcieli powtorz haslo!
+        Scanner input = new Scanner(System.in);
+        String password = input.nextLine();
+        return password;
+    }
+
+    public void createPassword(String oldPassword){
+        System.out.println("Wpisz nazwe uzytkownika");
+        Scanner input = new Scanner(System.in);
+        String name = input.nextLine();
+        if(isPasswordCorrect(oldPassword, name)){
+            String nPassword = createPassword();
+        }
+
+        //+polaczyc z db i zmienic w tabelce!!!
     }
 
 }
