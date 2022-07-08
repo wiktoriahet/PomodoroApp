@@ -10,13 +10,41 @@ public class User {
 
     public void chooseUser(){
         String userChosen;
+        String password;
+        Boolean isPassCorrect;
+
         UserMenu userMenu = new UserMenu();
-
-        printUsers();
-        System.out.println("Wpisz wybor ");
         Scanner input = new Scanner(System.in);
-        userChosen = input.nextLine();
 
+        printUsers();//lista uzytkownikow. czy konieczna pozniej???
+
+        System.out.println("Wpisz nazwe uzytkownika: ");
+        userChosen = input.nextLine();
+        System.out.println("Wpisz haslo: ");
+        password = input.nextLine();
+        isPassCorrect = isPasswordCorrect(password, userChosen);
+
+        if(!doesntExist(userChosen)&&isPassCorrect){
+            System.out.println("Wybrano uzytkownika " + userChosen);
+            userMenu.userMenuStartPage(userChosen);
+            //wejscie w menu uzytkownika
+        } else if(!doesntExist(userChosen) && !isPassCorrect){
+            System.out.println("Bledne haslo");
+            chooseUser();
+        } else {
+            System.out.println("Nie istnieje taki uzytkownik. Czy chcesz utworzyc nowe konto?");
+            String choiceYS;
+            choiceYS = input.nextLine();
+            if(choiceYS.equalsIgnoreCase("Tak")){
+                addUser(userChosen);
+            } else return;
+        }
+
+
+
+
+
+        /*
         if(!doesntExist(userChosen)){
             System.out.println("Wybrano uzytkownika " + userChosen);
             userMenu.userMenuStartPage(userChosen);
@@ -31,6 +59,8 @@ public class User {
                 addUser(userChosen);
             } else return;
         }
+
+         */
     }
 
     //drukuje wszystkich userów
