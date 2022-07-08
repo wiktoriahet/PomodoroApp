@@ -8,6 +8,7 @@ public class Menu {
 
         Scanner input = new Scanner(System.in);
         User user = new User();
+        WritingService writingService = new WritingService();
 
         int choice;
 
@@ -17,11 +18,10 @@ public class Menu {
             System.out.println("2.) Stworz nowego uzytkownika");
             System.out.println("3.) Kontynuuj jako gosc");
             System.out.println("4.) Usun uzytkownika");
-            System.out.println("5.) Wyjscie");
+            System.out.println("5.) Informacje o pomodoro i aplikacji");
+            System.out.println("6.) Wyjscie");
 
-            System.out.println("Wpisz wybor ");
-            choice = input.nextInt();
-
+            choice = writingService.typeChoiceNumber();
 
             switch (choice) {
 
@@ -34,11 +34,11 @@ public class Menu {
                     //usun aktywnosc
                     //sprawdz statystyki aktywnosci
                     //usun uzytkownika
-                    choice = 5;
+                    choice = 6;//potrzebne?
                     break;
 
                 case 2:
-                    choice = 5;
+                    choice = 6;
                     System.out.println("Stworz nowego uzytkownika");
                     user.addUser();
                     break;
@@ -52,10 +52,15 @@ public class Menu {
                 case 4:
                     System.out.println("Usun uzytkownika");
                     user.deleteUser();
-                    choice = 5;
+                    choice = 6;
                     break;
 
                 case 5:
+                    System.out.println("Informacje: ");
+                    //info o pomodoro
+                    //info o apce
+                    break;
+                case 6:
                     System.out.println("DO ZOBACZENIA");
                     System.exit(0);
                     break;
@@ -64,8 +69,7 @@ public class Menu {
 
             }
         }
-            while(choice != 5 /*Exit loop when choice is 5*/);
-
+            while(choice != 6 /*Exit loop when choice is 6*/);
 
         }
     }

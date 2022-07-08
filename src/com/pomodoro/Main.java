@@ -20,6 +20,14 @@ public class Main {
 
 
 
+        /*
+        TO DO
+        -class with strings to choose (with messages)
+        -add choosing break time after each session
+        -add information about app and pomodoro
+        -add possibility of creating account after ending session in guest section
+         */
+
 
 
 

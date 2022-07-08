@@ -20,7 +20,6 @@ public class Pomodoro {
             }
         }
     }
-    //elo
 
     private static void printProgress( long total, long current) {
 
@@ -89,13 +88,36 @@ public class Pomodoro {
         System.out.print(string);
     }
 
+    public void session(int sessionCount, long workTime, long shortBreakTime){
+        while(sessionCount>0) {
+            System.out.println("START!!!");
+            pomodoroTimer(workTime);
+            System.out.println("");
+            System.out.println("Czas na przerwe!");
+            pomodoroTimer(shortBreakTime);
+            sessionCount--;
+        }
+    }
+
+    public void session(int sessionCount, long workTime, long shortBreakTime, long longBreakTime){
+        while(sessionCount>0){
+            System.out.println("Start!!!");
+            pomodoroTimer(workTime);
+            System.out.println("");
+            System.out.println("Czas na przerwe!");
+            if(sessionCount%2==0){
+                pomodoroTimer(longBreakTime);
+            } else pomodoroTimer(shortBreakTime);
+            //dodac opcje wyboru dlugosci przerwy po kazdej sesji
+        }
+    }
+
     private static String zeroAdder(long time){
         if(time<10){
             return "0"+time;
         } else return ""+time;
 
     }
-
 
     }
 

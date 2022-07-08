@@ -21,4 +21,18 @@ public class WritingService {
         return password;
     }
 
+    public int typeChoiceNumber(){
+        System.out.println("Wpisz swoj wybor");
+        Scanner input = new Scanner(System.in);
+        int choice = input.nextInt();
+        return choice;
+    }
+
+    public String typeChoiceText(){
+        System.out.println("Wpisz swoj wybor");
+        Scanner input = new Scanner(System.in);
+        String choice = input.nextLine();
+        return choice;
+    }
+
 }
