@@ -21,6 +21,9 @@ public class Guest {
             case "1":
                 System.out.println("Zaczynam domyslny timer 25 minut");
                 pomodoro.pomodoroTimer(25);
+                System.out.println("");
+                System.out.println("Czas na przerwe! (5m)");
+                pomodoro.pomodoroTimer(5);
                 break;
             case "2":
                 System.out.println("Prosze wpisz ile minut chcesz aby trwal twoj timer");

@@ -10,6 +10,7 @@ public class User {
 
     public void chooseUser(){
         String userChosen;
+        UserMenu userMenu = new UserMenu();
 
         printUsers();
         System.out.println("Wpisz wybor ");
@@ -17,7 +18,8 @@ public class User {
         userChosen = input.nextLine();
 
         if(!doesntExist(userChosen)){
-            System.out.println("Wybrano uzytkownika");
+            System.out.println("Wybrano uzytkownika " + userChosen);
+            userMenu.userMenuStartPage(userChosen);
             //sprawdzanie hasla
             //dalej wchodzi w konto uzytkownika
 

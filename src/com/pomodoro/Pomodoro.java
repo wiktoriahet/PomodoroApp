@@ -32,6 +32,14 @@ public class Pomodoro {
         long minutes = total/60;
         long seconds = total%60;
 
+        if(minutes>59){
+            minutes=0;
+        }
+
+        if(seconds>59){
+            seconds=0;
+        }
+
         long activityTime = currentTime;
 
 
