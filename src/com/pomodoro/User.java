@@ -8,59 +8,46 @@ import java.util.UUID;
 
 public class User {
 
+    //wybiera uzytkownika z istniejacych, jesli nie istnieje to daje mozliwosc utworzenia nowego
     public void chooseUser(){
         String userChosen;
         String password;
         Boolean isPassCorrect;
 
         UserMenu userMenu = new UserMenu();
-        Scanner input = new Scanner(System.in);
 
         printUsers();//lista uzytkownikow. czy konieczna pozniej???
 
-        System.out.println("Wpisz nazwe uzytkownika: ");
-        userChosen = input.nextLine();
-        System.out.println("Wpisz haslo: ");
-        password = input.nextLine();
+        userChosen = typeUserName();
+        password = typePassword();
         isPassCorrect = isPasswordCorrect(password, userChosen);
 
         if(!doesntExist(userChosen)&&isPassCorrect){
+
             System.out.println("Wybrano uzytkownika " + userChosen);
             userMenu.userMenuStartPage(userChosen);
-            //wejscie w menu uzytkownika
+
         } else if(!doesntExist(userChosen) && !isPassCorrect){
+
             System.out.println("Bledne haslo");
             chooseUser();
+
         } else {
+
+            Scanner input = new Scanner(System.in);
+            String choice;
+
             System.out.println("Nie istnieje taki uzytkownik. Czy chcesz utworzyc nowe konto?");
-            String choiceYS;
-            choiceYS = input.nextLine();
-            if(choiceYS.equalsIgnoreCase("Tak")){
+            choice = input.nextLine();
+
+            if(choice.equalsIgnoreCase("Tak")){
+
                 addUser(userChosen);
+
             } else return;
         }
 
 
-
-
-
-        /*
-        if(!doesntExist(userChosen)){
-            System.out.println("Wybrano uzytkownika " + userChosen);
-            userMenu.userMenuStartPage(userChosen);
-            //sprawdzanie hasla
-            //dalej wchodzi w konto uzytkownika
-
-        } else {
-            System.out.println("Nie istnieje taki uzytkownik. Czy chcesz utworzyc nowe konto?");
-            String choiceYS;
-            choiceYS = input.nextLine();
-            if(choiceYS.equalsIgnoreCase("Tak")){
-                addUser(userChosen);
-            } else return;
-        }
-
-         */
     }
 
     //drukuje wszystkich userów
@@ -87,7 +74,6 @@ public class User {
     }
 
     //dodaje nowego usera
-
     public void addUser() {
 
         try {
@@ -103,7 +89,7 @@ public class User {
 
             System.out.println("Utworz haslo");
             Scanner input2 = new Scanner(System.in);
-            String password = createPassword();
+            String password = input2.nextLine();
             Date thisDate = new Date();
 
 
@@ -131,7 +117,7 @@ public class User {
 
             System.out.println("Utworz haslo: ");
             Scanner input2 = new Scanner(System.in);
-            String password = createPassword();
+            String password = input2.nextLine();
 
             Date thisDate = new Date();
 
@@ -253,23 +239,20 @@ public class User {
 
     }
 
-    public String createPassword(){
-        //bedziemy chcieli powtorz haslo!
+    public String typeUserName(){
+        System.out.println("Wpisz nazwe uzytkownika");
+        Scanner input = new Scanner(System.in);
+        String userName = input.nextLine();
+        return userName;
+    }
+
+    public String typePassword(){
+        System.out.println("Wpisz haslo");
         Scanner input = new Scanner(System.in);
         String password = input.nextLine();
         return password;
     }
 
-    public void createPassword(String oldPassword){
-        System.out.println("Wpisz nazwe uzytkownika");
-        Scanner input = new Scanner(System.in);
-        String name = input.nextLine();
-        if(isPasswordCorrect(oldPassword, name)){
-            String nPassword = createPassword();
-        }
-
-        //+polaczyc z db i zmienic w tabelce!!!
-    }
 
 }
 
