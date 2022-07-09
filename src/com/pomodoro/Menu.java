@@ -13,22 +13,14 @@ public class Menu {
         int choice;
 
         do {
-            System.out.println("WITAJ W APLIKACJI POMODORO");
-            System.out.println("1.) Wybierz uzytkownika");
-            System.out.println("2.) Stworz nowego uzytkownika");
-            System.out.println("3.) Kontynuuj jako gosc");
-            System.out.println("4.) Usun uzytkownika");
-            System.out.println("5.) Informacje o pomodoro i aplikacji");
-            System.out.println("6.) Wyjscie");
-
+            writingService.helloMessageMenu();
             choice = writingService.typeChoiceNumber();
 
             switch (choice) {
 
                 case 1:
-                    System.out.println("Wybierz uzytkownika");
-                    user.chooseUser();
 
+                    user.chooseUser();
                     //TU SIE MA OTWIERAC DALSZA CZESC DO POMODORO
                     //dodaj aktywnosc
                     //usun aktywnosc
@@ -39,18 +31,18 @@ public class Menu {
 
                 case 2:
                     choice = 6;
-                    System.out.println("Stworz nowego uzytkownika");
+                    writingService.createNewUserMessage();
                     user.addUser();
                     break;
 
                 case 3:
-                    System.out.println("Kontynuuj jako gosc");
+                    writingService.continueAsAGuestMessage();
                     Guest guest = new Guest();
                     guest.guestStart();
                     break;
 
                 case 4:
-                    System.out.println("Usun uzytkownika");
+                    writingService.deleteUserMessage();
                     user.deleteUser();
                     choice = 6;
                     break;

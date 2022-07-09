@@ -71,7 +71,8 @@ public class User{
                 String uniqueID = UUID.randomUUID().toString();
                 statement.executeUpdate("INSERT INTO user " + "VALUES('" + uniqueID + "', '" + userName + "', '" + password + "', '" + thisDate + "')");
 
-                System.out.println("Utworzono nowego uzytkownika: " + userName);
+                writingService.newUserCreatedMessage(userName);
+                //System.out.println("Utworzono nowego uzytkownika: " + userName);
 
             } else {
                 System.out.println("Podana nazwa juz istnieje");
