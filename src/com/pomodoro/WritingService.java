@@ -28,6 +28,20 @@ public class WritingService implements IWritingService{
         printMessage(msg);
     }
 
+    public void goodByeMessage(){
+        StringBuilder msg = new StringBuilder(NEW_LINE);
+        msg.append(GOOD_BYE);
+
+        printMessage(msg);
+    }
+
+    public void infoAboutPomAppMessage(){
+        StringBuilder msg = new StringBuilder(NEW_LINE);
+        msg.append(INFO).append(ABOUT).append(POMODORO).append(APP);
+
+        printMessage(msg);
+    }
+
     public void deleteUserMessage(){
         StringBuilder msg = new StringBuilder(NEW_LINE);
         msg.append(DELETE).append(USER).append(ACCOUNT);
@@ -81,32 +95,28 @@ public class WritingService implements IWritingService{
     public String typeUserName(){
         typeUserNameMessage();
         Scanner input = new Scanner(System.in);
-        String userName = input.nextLine();
-        return userName;
+        return input.nextLine();
     }
 
     @Override
     public String typePassword(){
         typePasswordMessage();
         Scanner input = new Scanner(System.in);
-        String password = input.nextLine();
-        return password;
+        return input.nextLine();
     }
 
     @Override
     public int typeChoiceNumber(){
         typeYourChoiceMessage();
         Scanner input = new Scanner(System.in);
-        int choice = input.nextInt();
-        return choice;
+        return input.nextInt();
     }
 
     @Override
     public String typeChoiceText(){
         typeYourChoiceMessage();
         Scanner input = new Scanner(System.in);
-        String choice = input.nextLine();
-        return choice;
+        return input.nextLine();
     }
 
     private void printMessage(StringBuilder sb){

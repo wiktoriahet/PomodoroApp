@@ -1,6 +1,5 @@
 package com.pomodoro;
 
-import java.util.Scanner;
 
 public class Guest {
 
@@ -25,23 +24,18 @@ public class Guest {
 
         choice = writingService.typeChoiceNumber();
 
-        switch (choice){
-            case 1:
-                pomodoro.session(sessionCount, workTime, shortBreakTime);
-                break;
-
-            case 2:
+        switch (choice) {
+            case 1 -> pomodoro.session(sessionCount, workTime, shortBreakTime);
+            case 2 -> {
 
                 System.out.println("Ile ma wynosic ilosc sesji praca plus przerwa?");
                 sessionCount = writingService.typeChoiceNumber();
-
                 System.out.println("Ile czasu ma trwac twoja sesja pracy?");
                 workTime = writingService.typeChoiceNumber();
-
                 System.out.println("Czy chcesz miec dwie dlugosci przerwy do wyboru?(Y/N)");
                 breakTypes = writingService.typeChoiceText();
 
-                if(breakTypes.equalsIgnoreCase("Y")){
+                if (breakTypes.equalsIgnoreCase("Y")) {
 
                     System.out.println("Ile minut ma trwac dluga przerwa?");
                     longBreakTime = writingService.typeChoiceNumber();
@@ -56,8 +50,9 @@ public class Guest {
                     pomodoro.session(sessionCount, workTime, shortBreakTime, longBreakTime);
                     System.out.println("Koniec wszystkich sesji!");
                 }
+            }
 
-                //dodac propozycje utworzenia konta i zapisu sesji jako nowa aktywnosc
+            //dodac propozycje utworzenia konta i zapisu sesji jako nowa aktywnosc
         }
     }
 }

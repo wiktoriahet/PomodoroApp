@@ -2,7 +2,6 @@ package com.pomodoro;
 
 import java.sql.*;
 import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.util.UUID;
 
@@ -15,7 +14,7 @@ public class User{
     public void chooseUser(){
         String userChosen;
         String password;
-        Boolean isPassCorrect;
+        boolean isPassCorrect;
 
         UserMenu userMenu = new UserMenu();
 
@@ -46,7 +45,7 @@ public class User{
 
                 addUser(userChosen);
 
-            } else return;
+            }
         }
 
 

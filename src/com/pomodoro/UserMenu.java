@@ -24,16 +24,9 @@ public class UserMenu {
 
 
             switch (choice) {
-
-                case 1:
-                    System.out.println("Wybierz aktywnosc");
-                    break;
-
-                case 2:
-                    System.out.println("Wpisz nowa aktywosc");
-                    break;
-
-                case 3:
+                case 1 -> System.out.println("Wybierz aktywnosc");
+                case 2 -> System.out.println("Wpisz nowa aktywosc");
+                case 3 -> {
                     System.out.println("Uzyj domyslnego pomodoro bez tworzenia aktywnosci");
                     Pomodoro pomodoro = new Pomodoro();
                     System.out.println("Rozpoczxynam domyslnmy timer 25m");
@@ -41,26 +34,17 @@ public class UserMenu {
                     System.out.println("");
                     System.out.println("Czas na przerwe!");
                     pomodoro.pomodoroTimer(5);
-                    break;
+                }
+                case 4 -> System.out.println("Usun istniejaca aktywnosc");
+                case 5 -> System.out.println("Sprawdz statystyki aktywnosci");
+                case 6 -> System.out.println("Ustawienia uzytkownika");
 
-                case 4:
-                    System.out.println("Usun istniejaca aktywnosc");
-                    break;
-
-                case 5:
-                    System.out.println("Sprawdz statystyki aktywnosci");
-                    break;
-                case 6:
-                    System.out.println("Ustawienia uzytkownika");
-                    //System.exit(0);
-                    break;
-                case 7:
+                //System.exit(0);
+                case 7 -> {
                     System.out.println("Wyjscie");
                     System.exit(0);
-                    break;
-                default:
-                    System.out.println("Nie istnieje taka opcja: "+ choice + "\nProsze wybrac istniejaca opcje.");
-
+                }
+                default -> System.out.println("Nie istnieje taka opcja: " + choice + "\nProsze wybrac istniejaca opcje.");
             }
         }
         while(choice != 7 /*Exit loop when choice is 7*/);

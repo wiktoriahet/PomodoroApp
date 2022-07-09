@@ -17,6 +17,7 @@ public class Pomodoro {
                 Thread.sleep(1000);
                 printProgress(nTotal, i);
             } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -24,8 +25,6 @@ public class Pomodoro {
     private static void printProgress( long total, long current) {
 
         long currentTime = current;
-
-
 
         long hours = total/60/60;
         long minutes = total/60;
@@ -40,12 +39,9 @@ public class Pomodoro {
         }
 
         long activityTime = currentTime;
-
-
         long currentHours = activityTime/60/60;
         long currentMinutes = activityTime/60;
         long currentSeconds = activityTime%60;
-
 
         if(currentMinutes>59){
             currentMinutes = 0;
@@ -53,7 +49,6 @@ public class Pomodoro {
         if(currentSeconds>59){
             currentSeconds = 0;
         }
-
 
         StringBuilder string = new StringBuilder(140);
         int percent = (int) (current * 100 / total);

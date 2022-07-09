@@ -4,6 +4,7 @@ public interface IWritingService {
 
     String NEW_LINE = "\n";
     String WELCOME = "WELCOME ";
+    String GOOD_BYE = "GOODBYE! ";
     String CREATE = "CREATE ";
     String CREATED = "CREATED ";
     String CONTINUE = "CONTINUE ";
@@ -46,10 +47,10 @@ public interface IWritingService {
     String NINE = "(9). ";
     String TEN = "(10). ";
 
-    public void helloMessageMenu();
-    public String typeUserName();
-    public String typePassword();
-    public int typeChoiceNumber();
-    public String typeChoiceText();
+    void helloMessageMenu();
+    String typeUserName();
+    String typePassword();
+    int typeChoiceNumber();
+    String typeChoiceText();
 
 }
