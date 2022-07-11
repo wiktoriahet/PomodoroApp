@@ -29,6 +29,7 @@ public class Menu {
                     user.addUser();
                 }
                 case 3 -> {
+                    choice = 6;
                     writingService.continueAsAGuestMessage();
                     Guest guest = new Guest();
                     guest.guestStart();

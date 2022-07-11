@@ -7,6 +7,7 @@ public class Guest {
 
         WritingService writingService = new WritingService();
         Pomodoro pomodoro = new Pomodoro();
+        User user = new User();
 
         String name;
         int choice;
@@ -17,9 +18,8 @@ public class Guest {
         int sessionCount = 5;
 
         name = writingService.typeUserName();
-
-        System.out.println("Witaj " + name);
-        System.out.println("Czy chcesz skorzystac z domyslnego ustawienia pomodoro(1), czy ustawic swoj wlasny czas(2)?");
+        writingService.welcomeNameMessage(name);
+        writingService.defaultOrCustomSettings();
         //wiecej info o sesjach dodac odnosnik do info
 
         choice = writingService.typeChoiceNumber();
@@ -28,31 +28,38 @@ public class Guest {
             case 1 -> pomodoro.session(sessionCount, workTime, shortBreakTime);
             case 2 -> {
 
-                System.out.println("Ile ma wynosic ilosc sesji praca plus przerwa?");
+                writingService.sessionCountMessage();
                 sessionCount = writingService.typeChoiceNumber();
-                System.out.println("Ile czasu ma trwac twoja sesja pracy?");
+
+                writingService.typeWorkTimeMessage();
                 workTime = writingService.typeChoiceNumber();
-                System.out.println("Czy chcesz miec dwie dlugosci przerwy do wyboru?(Y/N)");
-                breakTypes = writingService.typeChoiceText();
 
-                if (breakTypes.equalsIgnoreCase("Y")) {
+                writingService.shortBreakDurationMessage();
+                shortBreakTime = writingService.typeChoiceNumber();
 
-                    System.out.println("Ile minut ma trwac dluga przerwa?");
-                    longBreakTime = writingService.typeChoiceNumber();
-                    System.out.println("Ile minut ma trwac krotka przerwa?");
-                    shortBreakTime = writingService.typeChoiceNumber();
+                writingService.longBreakDurationMessage();
+                longBreakTime = writingService.typeChoiceNumber();
 
-                    pomodoro.session(sessionCount, workTime, shortBreakTime, longBreakTime);
+                pomodoro.session(sessionCount, workTime, shortBreakTime, longBreakTime);
 
-                    System.out.println("Koniec wszystkich sesji!");
-
-                } else {
-                    pomodoro.session(sessionCount, workTime, shortBreakTime, longBreakTime);
-                    System.out.println("Koniec wszystkich sesji!");
-                }
             }
+            case 3 -> {
 
-            //dodac propozycje utworzenia konta i zapisu sesji jako nowa aktywnosc
+                writingService.infoAboutPomAppMessage();
+
+            }
+            default -> {
+
+                writingService.choiceDoesntExist();
+
+            }
         }
+        writingService.createAnAccountToSave();
+        writingService.yesOrNo();
+        int yesOrNo = writingService.typeChoiceNumber();
+        if(yesOrNo==1) {
+            user.addUser();
+        } else {writingService.goodByeMessage();}
+
     }
 }

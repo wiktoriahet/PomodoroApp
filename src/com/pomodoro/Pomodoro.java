@@ -5,6 +5,8 @@ import java.util.Collections;
 
 public class Pomodoro {
 
+    WritingService writingService = new WritingService();
+
     public Pomodoro() {
     }
 
@@ -84,28 +86,52 @@ public class Pomodoro {
     }
 
     public void session(int sessionCount, long workTime, long shortBreakTime){
-        while(sessionCount>0) {
-            System.out.println("START!!!");
-            pomodoroTimer(workTime);
-            System.out.println("");
-            System.out.println("Czas na przerwe!");
-            pomodoroTimer(shortBreakTime);
-            sessionCount--;
+        int counter = sessionCount;
+        while(counter>0) {
+
+            writingService.newPomodoroSession();
+            writingService.newWorkSession();
+            String toStart = writingService.typeToStart();
+            startingAfterTyping(toStart, workTime);
+            writingService.newBreakSession();
+            toStart = writingService.typeToStart();
+            startingAfterTyping(toStart, shortBreakTime);
+            counter--;
+
         }
     }
 
     public void session(int sessionCount, long workTime, long shortBreakTime, long longBreakTime){
-        while(sessionCount>0){
-            System.out.println("Start!!!");
-            pomodoroTimer(workTime);
-            System.out.println("");
-            System.out.println("Czas na przerwe!");
-            if(sessionCount%2==0){
-                pomodoroTimer(longBreakTime);
-            } else pomodoroTimer(shortBreakTime);
+        int counter = sessionCount;
+        while(counter>0){
+
+            writingService.newPomodoroSession();
+            writingService.newWorkSession();
+            String toStart = writingService.typeToStart();
+            startingAfterTyping(toStart, workTime);
+            writingService.newBreakSession();
+            toStart = writingService.typeToStart();
+            if(counter%2==0){
+            startingAfterTyping(toStart, longBreakTime);}
+            else{
+                startingAfterTyping(toStart, shortBreakTime);
+            }
+
+            counter--;
+
             //dodac opcje wyboru dlugosci przerwy po kazdej sesji
         }
     }
+
+    private void startingAfterTyping(String type, long time){
+
+        if(!type.isEmpty()){
+            pomodoroTimer(time);
+        } //co jak jest empty???
+
+
+    }
+
 
     private static String zeroAdder(long time){
         if(time<10){

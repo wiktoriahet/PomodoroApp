@@ -27,10 +27,10 @@ public class User{
             isPassCorrect = passwordService.isPasswordCorrect(password, userChosen);
             if(isPassCorrect) {
 
-                System.out.println("Wybrano uzytkownika " + userChosen);
+                writingService.loggedAsUserNameMessage(userChosen);
                 userMenu.userMenuStartPage(userChosen);
             } else {
-                System.out.println("Bledne haslo");
+                writingService.wrongPasswordMessage();
                 chooseUser();}
 
         } else {
@@ -38,10 +38,12 @@ public class User{
             Scanner input = new Scanner(System.in);
             String choice;
 
-            System.out.println("Nie istnieje taki uzytkownik. Czy chcesz utworzyc nowe konto?");
+            writingService.wrongUserNameMessage();
+            writingService.doYouWantToCreateNewAccount();
+
             choice = input.nextLine();
 
-            if(choice.equalsIgnoreCase("Tak")){
+            if(choice.equalsIgnoreCase("Yes")){
 
                 addUser(userChosen);
 
@@ -71,10 +73,10 @@ public class User{
                 statement.executeUpdate("INSERT INTO user " + "VALUES('" + uniqueID + "', '" + userName + "', '" + password + "', '" + thisDate + "')");
 
                 writingService.newUserCreatedMessage(userName);
-                //System.out.println("Utworzono nowego uzytkownika: " + userName);
 
             } else {
-                System.out.println("Podana nazwa juz istnieje");
+                writingService.userNameAlreadyExists();
+                writingService.pleaseTryAgain();
                 addUser();
             }
 
@@ -97,7 +99,7 @@ public class User{
 
             statement.executeUpdate("INSERT INTO user " + "VALUES('" + uniqueID + "', '" + name + "', '" + password + "', '" + thisDate + "')");
 
-            System.out.println("Utworzono nowego uzytkownika: " + name);
+            writingService.newUserCreatedMessage(name);
 
         } catch (
                 Exception e) {
@@ -127,14 +129,14 @@ public class User{
                 preparedStmt.setString(1,id);
                 preparedStmt.execute();
 
-                System.out.println("Usunieto uzytkownika uzytkownika: " + userName);
+                writingService.userDeleted(userName);
 
             } catch (
                     Exception e) {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("Nie ma takiego uzytkownika badz podane haslo jest bledne");
+            writingService.wrongPasswordOrUserName();
         }
     }
 
@@ -156,7 +158,7 @@ public class User{
             e.printStackTrace();
         }
 
-        return "Brak uzytkownika w bazie danych";
+        return "USER NAME DOESN'T EXIST";
     }
     //drukuje wszystkich userów
     private static void printUsers() {
