@@ -12,7 +12,7 @@ public class Pomodoro {
 
     public void pomodoroTimer(long total) {
 
-        long nTotal = total*60;//zamienia wpisany czas w minutach na czas w sekundach
+        long nTotal = total*60;//changes time typed in minutes to seconds
 
         for (int i = 1; i <= nTotal; i++) {
             try {
@@ -59,18 +59,18 @@ public class Pomodoro {
 
                 .append(String.join("",
                         Collections.nCopies(percent == 0 ? 2 : 2 - (int)
-                                (Math.log10(percent)), " ")))  //formatuje tak, zeby znak % sie nie przesuwal w konsoli
+                                (Math.log10(percent)), " ")))
 
                 .append(String.format(" %d%% [",
-                        percent)) //ilosc % plus [
+                        percent))
 
                 .append(String.join("",
-                        Collections.nCopies(percent, "="))) //tyle ile % tyle znakow =
+                        Collections.nCopies(percent, "=")))
 
-                .append('>')  //> po =
+                .append('>')
 
                 .append(String.join("",
-                        Collections.nCopies(100 - percent, " "))) //miejsce przed kolejnym ]
+                        Collections.nCopies(100 - percent, " ")))
 
                 .append(']')
 
@@ -84,6 +84,7 @@ public class Pomodoro {
 
         System.out.print(string);
     }
+
 
     public void session(int sessionCount, long workTime, long shortBreakTime){
         int counter = sessionCount;
@@ -119,15 +120,22 @@ public class Pomodoro {
 
             counter--;
 
-            //dodac opcje wyboru dlugosci przerwy po kazdej sesji
+            //to do: add possibility of choosing break time different then default after each work session
         }
+    }
+
+    public void defaultSession(){
+        long workTime = 25;
+        long shortBreakTime = 5;
+        int sessionCount = 5;
+        session(sessionCount, workTime, shortBreakTime);
     }
 
     private void startingAfterTyping(String type, long time){
 
         if(!type.isEmpty()){
             pomodoroTimer(time);
-        } //co jak jest empty???
+        } //to do: what if it's empty?
 
 
     }

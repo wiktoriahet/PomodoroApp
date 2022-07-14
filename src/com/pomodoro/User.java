@@ -10,7 +10,7 @@ public class User{
     WritingService writingService = new WritingService();
     PasswordService passwordService = new PasswordService();
 
-    //wybiera uzytkownika z istniejacych, jesli nie istnieje to daje mozliwosc utworzenia nowego
+    //choosing user from existing, if doesn't exist possibility of creating one
     public void chooseUser(){
         String userChosen;
         String password;
@@ -18,7 +18,7 @@ public class User{
 
         UserMenu userMenu = new UserMenu();
 
-        printUsers();//lista uzytkownikow. czy konieczna pozniej???
+        printUsers();//to delete later?
 
         userChosen = writingService.typeUserName();
 
@@ -53,7 +53,7 @@ public class User{
 
     }
 
-    //dodaje nowego usera
+    //adds new user
     public void addUser() {
 
         try {
@@ -86,6 +86,7 @@ public class User{
         }
     }
 
+    //adds new user for guest
     public void addUser(String name){
         try {
             Date thisDate = new Date();
@@ -107,7 +108,7 @@ public class User{
         }
     }
 
-    //usuwa uzytkownika
+    //deleting existing user
     public void deleteUser(){
 
         String userName;
@@ -140,8 +141,17 @@ public class User{
         }
     }
 
-    //wypluwa id nadane w bazie danych
-    private static String getID(String userName){
+    public void userAccountSettings(String userName, String password){
+        boolean isCorrect = passwordService.isPasswordCorrect(password, userName);
+        if(isCorrect){
+            System.out.println("Password correct");
+            //change user name
+            //change password
+        }
+    }
+
+    //returns ID saved in database
+    public static String getID(String userName){
 
         try {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pomodorodb", "toriahem", "Gk6tnmcj!");
@@ -160,7 +170,8 @@ public class User{
 
         return "USER NAME DOESN'T EXIST";
     }
-    //drukuje wszystkich userów
+
+    //prints the list of all the users from database
     private static void printUsers() {
 
         try {
@@ -170,7 +181,7 @@ public class User{
 
             int counter = 0;
 
-            //resultser.next jest boolean wiec jesli jest nastepny rekord to pokazuje true a jesli nie to false
+            //resultser.next =true/false
             while (resultSet.next()) {
 
                 counter++;
@@ -183,7 +194,7 @@ public class User{
         }
     }
 
-    //sprawdza czy user istnieje
+    //if user doesn't exist it returns true
     private static boolean doesntExist(String name) {
 
         try {
@@ -203,5 +214,6 @@ public class User{
         }
         return true;
     }
+
 }
 

@@ -28,6 +28,27 @@ public class WritingService implements IWritingService{
         printMessage(msg);
     }
 
+    @Override
+    public void helloMessageUserMenu(String userName){
+        welcomeNameMessage(userName);
+        StringBuilder msg = new StringBuilder(NEW_LINE);
+        msg.append(ONE).append(CHOOSE).append(ACTIVITY).append(FROM).append(EXISTING);
+        msg.append(NEW_LINE);
+        msg.append(TWO).append(CREATE).append(N_EW).append(ACTIVITY);
+        msg.append(NEW_LINE);
+        msg.append(THREE).append(USE).append(DEFAULT).append(POMODORO).append(WITHOUT).append(CREATING).append(ACTIVITY);
+        msg.append(NEW_LINE);
+        msg.append(FOUR).append(DELETE).append(EXISTING).append(ACTIVITY);
+        msg.append(NEW_LINE);
+        msg.append(FIVE).append(CHECK).append(ACTIVITY).append(STATISTICS);
+        msg.append(NEW_LINE);
+        msg.append(SIX).append(USER).append(ACCOUNT).append(SETTINGS);
+        msg.append(NEW_LINE);
+        msg.append(SEVEN).append(EXIT);
+
+        printMessage(msg);
+    }
+
     public void newPomodoroSession(){
         StringBuilder msg = new StringBuilder(NEW_LINE);
         msg.append(N_EW).append(POMODORO).append(SESSIONs);
@@ -54,6 +75,7 @@ public class WritingService implements IWritingService{
         return input.nextLine();
     }
 
+    //never used yet
     public String typeToStop(){
         StringBuilder msg = new StringBuilder(NEW_LINE);
         msg.append(TYPE).append(ANYTHING).append(TO).append(STOP);
@@ -259,6 +281,7 @@ public class WritingService implements IWritingService{
         return input.nextInt();
     }
 
+    //not used anywhere yet. to delete?
     @Override
     public String typeChoiceText(){
         typeYourChoiceMessage();

@@ -21,7 +21,7 @@ public class Menu {
                     //usun aktywnosc
                     //sprawdz statystyki aktywnosci
                     //usun uzytkownika
-                    choice = 6;//potrzebne?
+                    choice = 6;
                 }
                 case 2 -> {
                     choice = 6;

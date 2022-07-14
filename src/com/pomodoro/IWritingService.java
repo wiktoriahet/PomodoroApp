@@ -7,6 +7,7 @@ public interface IWritingService {
     String GOOD_BYE = "GOODBYE! ";
     String CREATE = "CREATE ";
     String CREATED = "CREATED ";
+    String CREATING = "CREATING ";
     String CONTINUE = "CONTINUE ";
     String DELETE = "DELETE ";
     String ACCOUNT = "ACCOUNT ";
@@ -22,6 +23,10 @@ public interface IWritingService {
     String TIME = "TIME ";
     String BREAK = "BREAK ";
     String PLEASE = "PLEASE ";
+    String USE = "USE ";
+    String WITHOUT = "WITHOUT ";
+    String CHECK = "CHECK ";
+    String STATISTICS = "STATISTICS ";
     String REPEAT = "REPEAT ";
     String OLD = "OLD ";
     String AND = "AND ";
@@ -31,6 +36,9 @@ public interface IWritingService {
     String AGAIN = "AGAIN ";
     String ALREADY = "ALREADY ";
     String EXISTS = "EXISTS ";
+    String ACTIVITY = "ACTIVITY ";
+    String FROM = "FROM ";
+    String EXISTING = "EXISTING ";
     String DO = "DO ";
     String AS = "AS ";
     String A = "A ";
@@ -79,6 +87,7 @@ public interface IWritingService {
     String TEN = "(10). ";
 
     void helloMessageMenu();
+    void helloMessageUserMenu(String userName);
     String typeUserName();
     String typePassword();
     int typeChoiceNumber();

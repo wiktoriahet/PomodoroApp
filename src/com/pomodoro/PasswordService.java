@@ -7,6 +7,7 @@ import java.sql.Statement;
 
 public class PasswordService {
 
+    //checks if password is correct with the password saved in database
     public boolean isPasswordCorrect(String password, String name){
 
         try {

@@ -11,21 +11,20 @@ public class Guest {
 
         String name;
         int choice;
-        String breakTypes;
-        long workTime = 25;
-        long shortBreakTime = 5;
-        long longBreakTime = 10;
-        int sessionCount = 5;
+        long workTime;
+        long shortBreakTime;
+        long longBreakTime;
+        int sessionCount;
 
         name = writingService.typeUserName();
         writingService.welcomeNameMessage(name);
         writingService.defaultOrCustomSettings();
-        //wiecej info o sesjach dodac odnosnik do info
+        //add new page choice with info about app and pomodoro method
 
         choice = writingService.typeChoiceNumber();
 
         switch (choice) {
-            case 1 -> pomodoro.session(sessionCount, workTime, shortBreakTime);
+            case 1 -> pomodoro.defaultSession();
             case 2 -> {
 
                 writingService.sessionCountMessage();
@@ -54,6 +53,8 @@ public class Guest {
 
             }
         }
+
+        //ask if guest wants to create new account to save data
         writingService.createAnAccountToSave();
         writingService.yesOrNo();
         int yesOrNo = writingService.typeChoiceNumber();
